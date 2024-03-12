@@ -11,10 +11,10 @@ export const MainContainer = styled.main`
   align-items: center;
   padding: 2rem 0;
 `
-export const Container = styled.section`
+export const ContainerWrapper = styled.section`
   width: 95%;
-  max-width: 768px;
-  height: 520px;
+  max-width: 800px;
+  height: 580px;
   background-color: #373737;
   display: flex;
   align-items: center;
@@ -52,14 +52,11 @@ export const Image = styled.img`
   width: 180px;
   margin-bottom: 2rem;
   @media screen and (max-width: 620px) {
-    margin: 0;
+    display: none;
   }
 `
 export const Title = styled.h1`
   margin-bottom: 1rem;
-  @media screen and (max-width: 620px) {
-    margin-bottom: 0.5rem;
-  }
 `
 export const LoginContainer = styled.form`
   width: 100%;
@@ -76,9 +73,9 @@ export const Input = styled.input`
   width: 100%;
   padding: 0.4rem;
   font-size: 0.9rem;
-  border: none;
+  border: ${(props) => (props.$error ? '2px solid #f22' : 'none')};
   outline: none;
-  border-radius: 0.3rem;
+  border-radius: 0.4rem;
   height: 38px;
 
   &.submit {
@@ -99,24 +96,29 @@ export const Input = styled.input`
 
 export const Wrapper = styled.div`
   width: 100%;
-
-  > div {
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    border-radius: 0.3rem;
-    > div {
-      font-size: 1.2rem;
-      color: #000;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 0.5rem;
-    }
-  }
 `
 
+export const InputWrapper = styled.div`
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  border-radius: 0.4rem;
+  border: ${(props) => (props.$error ? '2px solid #f22' : 'none')};
+  > div {
+    font-size: 1.2rem;
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0.5rem;
+  }
+`
+export const TextError = styled.p`
+  color: #f22;
+  margin-top: 0.3rem;
+  font-weight: 700;
+`
 export const Register = styled.p`
   font-weight: 300;
   font-size: 0.9rem;
