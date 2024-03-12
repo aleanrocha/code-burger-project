@@ -6,6 +6,7 @@ import { FaUnlock } from 'react-icons/fa6'
 import * as yup from 'yup'
 
 import burgerLogoLogin from '../../assets/burger-logo-login.svg'
+import api from '../../services/api'
 import {
   MainContainer,
   ContainerWrapper,
@@ -45,7 +46,16 @@ const Login = () => {
     resolver: yupResolver(schema)
   })
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = async (data) => {
+    try {
+      await api.post('sessions', {
+        email: data.email,
+        password: data.password
+      })
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
 
   return (
     <MainContainer>
