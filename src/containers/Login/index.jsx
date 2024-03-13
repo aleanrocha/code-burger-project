@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FaLock } from 'react-icons/fa6'
 import { FaUnlock } from 'react-icons/fa6'
+import { ToastContainer, toast } from 'react-toastify'
 import * as yup from 'yup'
 
 import burgerLogoLogin from '../../assets/burger-logo-login.svg'
@@ -25,6 +26,7 @@ import {
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
+  const [loading, setLoading] = useState(false)
   const togglePasswordVisibility = () => setShowPassword(!showPassword)
 
   const schema = yup.object().shape({
@@ -48,12 +50,27 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      await api.post('sessions', {
-        email: data.email,
-        password: data.password
-      })
+      setLoading(true)
+      const { status } = await api.post(
+        'sessions',
+        {
+          email: data.email,
+          password: data.password
+        },
+        { validateStatus: () => true }
+      )
+      setLoading(false)
+      if (status === 201 || status === 200) {
+        toast.success('Login realizado com sucesso!')
+      } else if (status === 401) {
+        toast.error('E-mail ou senha incorretos!')
+      } else {
+        throw new Error()
+      }
     } catch (error) {
-      console.log(error.message)
+      setLoading(false)
+      console.error('Ocorreu um erro', error)
+      toast.error('Erro no servidor. Por favor, tente novamente mais tarde.')
     }
   }
 
@@ -83,17 +100,22 @@ const Login = () => {
               <InputWrapper $error={errors.password?.message}>
                 <Input
                   id="pass"
-                  type={showPassword ? 'password' : 'text'}
+                  type={showPassword ? 'text' : 'password'}
                   placeholder="Sua senha"
                   {...register('password')}
                 />
                 <div onClick={togglePasswordVisibility}>
-                  {showPassword ? <FaLock /> : <FaUnlock />}
+                  {showPassword ? <FaUnlock /> : <FaLock />}
                 </div>
               </InputWrapper>
               <TextError>{errors.password?.message}</TextError>
             </Wrapper>
-            <Input type="submit" value="Entrar" className="submit" />
+            <Input
+              type="submit"
+              value={!loading ? 'Entrar' : 'Entrando...'}
+              className="submit"
+            />
+            <ToastContainer autoClose={2000} />
           </LoginContainer>
           <Register>
             Não possui conta? <a href="#">Cadastre-se</a>
