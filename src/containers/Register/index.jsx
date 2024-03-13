@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FaLock } from 'react-icons/fa6'
 import { FaUnlock } from 'react-icons/fa6'
+import { ToastContainer, toast } from 'react-toastify'
 import * as yup from 'yup'
 
 import burgerLogoLogin from '../../assets/burger-logo-login.svg'
@@ -25,6 +26,7 @@ import {
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const schema = yup.object().shape({
@@ -53,13 +55,28 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     try {
-      await api.post('users', {
-        name: data.name,
-        email: data.email,
-        password: data.password
-      })
+      setLoading(true)
+      const { status } = await api.post(
+        'users',
+        {
+          name: data.name,
+          email: data.email,
+          password: data.password
+        },
+        { validateStatus: () => true }
+      )
+      setLoading(false)
+      if (status === 201 || status === 200) {
+        toast.success('Cadastro realizado com sucesso!')
+      } else if (status === 409) {
+        toast.error('E-mail já cadastrado. Faça login pra acessar.')
+      } else {
+        throw new Error()
+      }
     } catch (error) {
-      console.log(error.message)
+      setLoading(false)
+      console.error('Ocorreu um erro', error)
+      toast.error('Erro no servidor. Por favor, tente novamente mais tarde.')
     }
   }
 
@@ -129,7 +146,12 @@ const Register = () => {
               </InputWrapper>
               <TextError>{errors.confirmPass?.message}</TextError>
             </Wrapper>
-            <Input type="submit" value="Catastrar" className="submit" />
+            <Input
+              type="submit"
+              value={!loading ? 'Cadastrar' : 'Cadastrando...'}
+              className="submit"
+            />
+            <ToastContainer autoClose={2000} />
           </RegisterContainer>
           <LoginLink>
             Já possui conta?<a href="#"> Login</a>
