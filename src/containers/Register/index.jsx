@@ -23,7 +23,7 @@ import {
   TextError
 } from './styles'
 
-const Login = () => {
+const Register = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
@@ -140,4 +140,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register
