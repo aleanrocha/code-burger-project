@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import * as yup from 'yup'
 
 import burgerLogoLogin from '../../assets/burger-logo-login.svg'
-import { useUser } from '../../hooks/UserContext'
+import useUser from '../../hooks/useUser'
 import api from '../../services/api'
 import {
   MainContainer,

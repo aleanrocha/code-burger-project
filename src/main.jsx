@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 
 import Login from './containers/Login'
 // import Register from './containers/Register'
-import { UserProvider } from './hooks/UserContext'
+import { UserProvider } from './context/UserContext'
 import GlobalStyles from './styles/globalStyles'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
