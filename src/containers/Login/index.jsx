@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import * as yup from 'yup'
 
 import burgerLogoLogin from '../../assets/burger-logo-login.svg'
+import { useUser } from '../../hooks/UserContext'
 import api from '../../services/api'
 import {
   MainContainer,
@@ -27,6 +28,7 @@ import {
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
+  const { putUserData } = useUser()
   const togglePasswordVisibility = () => setShowPassword(!showPassword)
 
   const schema = yup.object().shape({
@@ -51,7 +53,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       setLoading(true)
-      const { status } = await api.post(
+      const { data: clientData, status } = await api.post(
         'sessions',
         {
           email: data.email,
@@ -60,6 +62,7 @@ const Login = () => {
         { validateStatus: () => true }
       )
       setLoading(false)
+      putUserData(clientData)
       if (status === 201 || status === 200) {
         toast.success('Login realizado com sucesso!')
       } else if (status === 401) {
