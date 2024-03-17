@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FaLock } from 'react-icons/fa6'
 import { FaUnlock } from 'react-icons/fa6'
+import { Navigate, Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import * as yup from 'yup'
 
@@ -29,6 +30,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const { putUserData } = useUser()
+  const [isUser, setIsUser] = useState(false)
   const togglePasswordVisibility = () => setShowPassword(!showPassword)
 
   const schema = yup.object().shape({
@@ -62,9 +64,10 @@ const Login = () => {
         { validateStatus: () => true }
       )
       setLoading(false)
-      putUserData(clientData)
+      clientData.error ? null : putUserData(clientData)
       if (status === 201 || status === 200) {
         toast.success('Login realizado com sucesso!')
+        setTimeout(() => setIsUser(true), 2000)
       } else if (status === 401) {
         toast.error('E-mail ou senha incorretos!')
       } else {
@@ -79,6 +82,7 @@ const Login = () => {
 
   return (
     <MainContainer>
+      {isUser && <Navigate to={'/'} replace={true} />}
       <ContainerWrapper>
         <LoginImage />
         <ContainerItens>
@@ -121,7 +125,7 @@ const Login = () => {
             <ToastContainer autoClose={2000} />
           </LoginContainer>
           <Register>
-            Não possui conta? <a href="#">Cadastre-se</a>
+            Não possui conta? <Link to={'/cadastrar'}>Cadastre-se</Link>
           </Register>
         </ContainerItens>
       </ContainerWrapper>

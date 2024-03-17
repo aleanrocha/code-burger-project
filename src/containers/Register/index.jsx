@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FaLock } from 'react-icons/fa6'
 import { FaUnlock } from 'react-icons/fa6'
+import { Navigate, Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import * as yup from 'yup'
 
@@ -27,6 +28,7 @@ import {
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [isUser, setIsUser] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const schema = yup.object().shape({
@@ -68,6 +70,7 @@ const Register = () => {
       setLoading(false)
       if (status === 201 || status === 200) {
         toast.success('Cadastro realizado com sucesso!')
+        setTimeout(() => setIsUser(true), 2000)
       } else if (status === 409) {
         toast.error('E-mail já cadastrado. Faça login pra acessar.')
       } else {
@@ -82,6 +85,7 @@ const Register = () => {
 
   return (
     <MainContainer>
+      {isUser && <Navigate to={'/entrar'} replace={true} />}
       <ContainerWrapper>
         <RegisterImage />
         <ContainerItens>
@@ -154,7 +158,7 @@ const Register = () => {
             <ToastContainer autoClose={2000} />
           </RegisterContainer>
           <LoginLink>
-            Já possui conta?<a href="#"> Login</a>
+            Já possui conta?<Link to={'/entrar'}> Entrar</Link>
           </LoginLink>
         </ContainerItens>
       </ContainerWrapper>
