@@ -1,5 +1,7 @@
+import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 const Protected = ({ children }) => {
   const navigate = useNavigate()
   const user = localStorage.getItem('clientData')
@@ -9,7 +11,11 @@ const Protected = ({ children }) => {
     }
   }, [navigate, user])
 
-  return children
+  return user ? children : null
 }
 
 export default Protected
+
+Protected.propTypes = {
+  children: PropTypes.node
+}
