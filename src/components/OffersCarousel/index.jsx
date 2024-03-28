@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { register } from 'swiper/element/bundle'
 
 import api from '../../services/api'
+import formatCurrency from '../../utils/formatCurrency'
 import Button from '../Button'
 import {
   OffersContainer,
@@ -22,7 +23,11 @@ const OffersCarousel = () => {
   useEffect(() => {
     const loadOffers = async () => {
       const { data } = await api.get('/products')
-      const offerProducts = data.filter((product) => product.offer)
+      const offerProducts = data
+        .filter((product) => product.offer)
+        .map((product) => {
+          return { ...product, formatedPrice: formatCurrency(product.price) }
+        })
       setOffers(offerProducts)
     }
     loadOffers()
@@ -74,7 +79,7 @@ const OffersCarousel = () => {
             <SlideContent>
               <Image src={offer.url} alt="comida deliciosa" />
               <Title>{offer.name}</Title>
-              <Text>{`R$ ${offer.price}`}</Text>
+              <Text>{offer.formatedPrice}</Text>
               <Button text={'Peça agora'} />
             </SlideContent>
           </swiper-slide>
