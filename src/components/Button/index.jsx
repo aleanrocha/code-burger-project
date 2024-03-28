@@ -2,8 +2,8 @@ import PropTypes from 'prop-types'
 
 import Btn from './styles'
 
-const Button = (props) => {
-  return <Btn {...props}>{props.text}</Btn>
+const Button = ({ text }) => {
+  return <Btn>{text}</Btn>
 }
 
 export default Button
