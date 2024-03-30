@@ -1,26 +1,37 @@
 import { useEffect, useState } from 'react'
 
 import banner from '../../assets/banner-burger-products.svg'
+import CardProduct from '../../components/CardProduct'
 import api from '../../services/api'
+import formatCurrency from '../../utils/formatCurrency'
 import {
   BannerContainer,
   BannerImage,
   CategoryButton,
-  MenuContainer
+  MenuContainer,
+  ProductContainer
 } from './styles'
 
 const Home = () => {
   const [categories, setCategories] = useState([])
+  const [products, setProducts] = useState([])
   const [active, setActive] = useState(0)
 
   useEffect(() => {
     const loadCategories = async () => {
       const { data } = await api.get('/categories')
       const newCategories = [{ id: 0, name: 'Todos' }, ...data]
-      console.log(newCategories)
       setCategories(newCategories)
     }
+    const loadProducts = async () => {
+      const { data } = await api.get('/products')
+      const products = data.map((product) => {
+        return { ...product, formatedPrice: formatCurrency(product.price) }
+      })
+      setProducts(products)
+    }
     loadCategories()
+    loadProducts()
   }, [])
 
   return (
@@ -40,6 +51,12 @@ const Home = () => {
             </CategoryButton>
           ))}
       </MenuContainer>
+      <ProductContainer>
+        {products &&
+          products.map((product) => (
+            <CardProduct key={product.id} product={product} />
+          ))}
+      </ProductContainer>
     </>
   )
 }

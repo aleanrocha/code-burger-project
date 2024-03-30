@@ -45,3 +45,17 @@ export const CategoryButton = styled.button`
     width: 100%;
   }
 `
+export const ProductContainer = styled.section`
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 1.5rem;
+
+  width: 95%;
+  max-width: 1280px;
+  min-height: 70vh;
+  margin: 0 auto;
+`
