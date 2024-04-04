@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 
+import useCart from '../../hooks/useCart'
 import Button from '../Button'
 import {
   Product,
@@ -11,6 +12,8 @@ import {
 } from './styles'
 
 const CardProduct = ({ product }) => {
+  const { putCartData } = useCart()
+
   return (
     <Product>
       <ProductImage>
@@ -19,7 +22,7 @@ const CardProduct = ({ product }) => {
       <ProductInfo>
         <ProductName>{product.name}</ProductName>
         <ProductPrice>{product.formatedPrice}</ProductPrice>
-        <Button text={'Comprar'} />
+        <Button text={'Adicionar'} click={() => putCartData(product)} />
       </ProductInfo>
     </Product>
   )
