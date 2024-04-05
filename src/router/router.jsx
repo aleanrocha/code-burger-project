@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 
+import Cart from '../containers/Cart'
 import Home from '../containers/Home'
 import Layout from '../containers/Layout'
 import Login from '../containers/Login'
@@ -24,6 +25,14 @@ const Router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Products />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: '/carrinho',
+        element: (
+          <ProtectedRoute>
+            <Cart />
           </ProtectedRoute>
         )
       }
