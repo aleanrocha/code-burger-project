@@ -52,12 +52,26 @@ export const Body = styled.div`
   justify-items: center;
   align-items: center;
 
-  > p {
+  p {
     color: black;
     font-size: 1rem;
   }
 
   @media screen and (max-width: 720px) {
     grid-template-columns: repeat(1, 1fr);
+  }
+`
+
+export const QuantityWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  > button {
+    background-color: transparent;
+    border: 0;
+    font-size: 1.7rem;
+    padding: 0.5rem;
+    cursor: pointer;
   }
 `

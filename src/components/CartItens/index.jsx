@@ -4,6 +4,7 @@ import {
   CartItemsContainer,
   Header,
   Body,
+  QuantityWrapper,
   ParagraphWrapper,
   Image
 } from './styles'
@@ -25,7 +26,11 @@ const CartItens = () => {
             <Image src={product.url} alt="comida deliciosa" />
             <ParagraphWrapper>{product.name}</ParagraphWrapper>
             <ParagraphWrapper>{formatCurrency(product.price)}</ParagraphWrapper>
-            <ParagraphWrapper>{` - ${product.quantity} +`}</ParagraphWrapper>
+            <QuantityWrapper>
+              <button>-</button>
+              <ParagraphWrapper>{product.quantity}</ParagraphWrapper>
+              <button>+</button>
+            </QuantityWrapper>
             <ParagraphWrapper>
               {formatCurrency(product.price * product.quantity)}
             </ParagraphWrapper>
