@@ -10,7 +10,7 @@ import {
 } from './styles'
 
 const CartItens = () => {
-  const { cartData } = useCart()
+  const { increaseCartData, decreaseCartData, cartData } = useCart()
 
   return (
     <CartItemsContainer>
@@ -27,9 +27,9 @@ const CartItens = () => {
             <ParagraphWrapper>{product.name}</ParagraphWrapper>
             <ParagraphWrapper>{formatCurrency(product.price)}</ParagraphWrapper>
             <QuantityWrapper>
-              <button>-</button>
+              <button onClick={() => decreaseCartData(product.id)}>-</button>
               <ParagraphWrapper>{product.quantity}</ParagraphWrapper>
-              <button>+</button>
+              <button onClick={() => increaseCartData(product.id)}>+</button>
             </QuantityWrapper>
             <ParagraphWrapper>
               {formatCurrency(product.price * product.quantity)}
