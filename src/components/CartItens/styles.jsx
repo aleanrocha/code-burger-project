@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const CartItemsContainer = styled.div`
   width: 95%;
   max-width: 800px;
-  margin: auto;
+  margin: 0 auto;
   background-color: #fafafa;
 `
 export const Header = styled.div`
