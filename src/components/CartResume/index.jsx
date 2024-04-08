@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
 
 import useCart from '../../hooks/useCart'
+import api from '../../services/api'
 import formatCurrency from '../../utils/formatCurrency'
 import Button from '../Button'
 import { CartResumeContainer, ContainerItems } from './styles'
@@ -10,6 +12,17 @@ const CartResume = () => {
   const [deliveryTax, setDeliveryTax] = useState(0)
 
   const { cartData } = useCart()
+
+  const submitOrder = async () => {
+    const order = cartData.map((product) => {
+      return { id: product.id, quantity: product.quantity }
+    })
+    await toast.promise(api.post('/orders', { products: order }), {
+      pending: 'Realizando pedido...',
+      success: 'Pedido realizado!',
+      error: 'Erro ao fazer pedido!'
+    })
+  }
 
   useEffect(() => {
     const sumAllItems = cartData.reduce((acc, cur) => {
@@ -37,7 +50,8 @@ const CartResume = () => {
           </p>
         </div>
       </ContainerItems>
-      <Button text={'Finalizar pedido'} />
+      <Button text={'Finalizar pedido'} click={submitOrder} />
+      <ToastContainer autoClose={1000} />
     </CartResumeContainer>
   )
 }
