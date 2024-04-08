@@ -30,7 +30,6 @@ export const OfferTitle = styled.h2`
 export const SlideContent = styled.div`
   width: 100%;
   max-width: 300px;
-  background-color: aliceblue;
   display: flex;
   flex-direction: column;
   gap: 0.4rem;

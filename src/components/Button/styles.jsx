@@ -1,8 +1,12 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Btn = styled.button`
+const Btn = styled(Link)`
   background-color: #9758a4;
   color: #fafafa;
+  display: block;
+  text-decoration: none;
+  text-align: center;
   padding: 0.8rem 1.5rem;
   font-size: 1.2rem;
   font-weight: 700;

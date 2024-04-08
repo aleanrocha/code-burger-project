@@ -37,7 +37,7 @@ export const ProductInfo = styled.div`
   justify-content: space-between;
   gap: 0.5rem;
 
-  > button {
+  > a {
     border-radius: 10rem;
     font-size: 1rem;
   }

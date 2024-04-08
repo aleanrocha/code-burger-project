@@ -7,7 +7,7 @@ export const CartResumeContainer = styled.div`
   top: 1rem;
   left: 0;
 
-  > button {
+  > a {
     width: 100%;
     margin-top: 1.5rem;
     border-radius: 0;
