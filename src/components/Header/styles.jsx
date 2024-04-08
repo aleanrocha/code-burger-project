@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
@@ -19,11 +20,16 @@ export const NavBar = styled.nav`
   gap: 1.5rem;
 `
 
-export const Link = styled.a`
+export const Link = styled(NavLink)`
   text-decoration: none;
   font-weight: 700;
   color: #555;
   cursor: pointer;
+
+  &.active {
+    color: #9758a6;
+    font-weight: 900;
+  }
 `
 
 export const CartContent = styled.div`

@@ -15,11 +15,16 @@ const Header = () => {
     <HeaderContainer>
       <ContainerItems>
         <NavBar>
-          <Link>Home</Link>
-          <Link>Produtos</Link>
+          <Link
+            className={({ isActive }) => (isActive ? 'active' : '')}
+            to={'/'}
+          >
+            Home
+          </Link>
+          <Link to={'/produtos'}>Produtos</Link>
         </NavBar>
         <CartContent>
-          <Link>
+          <Link to={'/carrinho'}>
             <FiShoppingCart />
           </Link>
           <span></span>
