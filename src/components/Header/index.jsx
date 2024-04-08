@@ -1,6 +1,8 @@
 import { FaUser } from 'react-icons/fa'
 import { FiShoppingCart } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom'
 
+import useUser from '../../hooks/useUser'
 import {
   HeaderContainer,
   ContainerItems,
@@ -11,6 +13,14 @@ import {
 } from './styles'
 
 const Header = () => {
+  const { logout } = useUser()
+  const navigate = useNavigate()
+
+  const logoutUser = () => {
+    logout()
+    navigate('/login')
+  }
+
   return (
     <HeaderContainer>
       <ContainerItems>
@@ -33,7 +43,7 @@ const Header = () => {
           </Link>
           <UserContent>
             <p>Olá Alean</p>
-            <Link>Sair</Link>
+            <Link onClick={logoutUser}>Sair</Link>
           </UserContent>
         </CartContent>
       </ContainerItems>

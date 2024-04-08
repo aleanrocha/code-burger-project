@@ -9,8 +9,12 @@ export const UserProvider = ({ children }) => {
       const newData = { ...prevUserData, ...data }
       return localStorage.setItem('clientData', JSON.stringify(newData))
     })
-    console.log(userData)
   }
+
+  const logout = async () => {
+    await localStorage.removeItem('clientData')
+  }
+
   useEffect(() => {
     const loadClientData = async () => {
       const clientDataString = await localStorage.getItem('clientData')
@@ -20,8 +24,9 @@ export const UserProvider = ({ children }) => {
     }
     loadClientData()
   }, [])
+
   return (
-    <UserContext.Provider value={{ putUserData }}>
+    <UserContext.Provider value={{ putUserData, userData, logout }}>
       {children}
     </UserContext.Provider>
   )
