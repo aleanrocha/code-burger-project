@@ -1,6 +1,7 @@
-import banner from '../../assets/banner-burger-products.svg'
+import banner from '../../assets/banner-burger-cart.svg'
 import CartItens from '../../components/CartItens'
-import { Container, BannerContainer, BannerImage } from './styles'
+import CartResume from '../../components/CartResume'
+import { Container, BannerContainer, BannerImage, Wrapper } from './styles'
 
 const Cart = () => {
   return (
@@ -8,7 +9,10 @@ const Cart = () => {
       <BannerContainer>
         <BannerImage src={banner} alt="Image de um hamburger" />
       </BannerContainer>
-      <CartItens />
+      <Wrapper>
+        <CartItens />
+        <CartResume />
+      </Wrapper>
     </Container>
   )
 }
