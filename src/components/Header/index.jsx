@@ -15,6 +15,8 @@ import {
 const Header = () => {
   const { logout } = useUser()
   const navigate = useNavigate()
+  const user = localStorage.getItem('clientData')
+  const userName = JSON.parse(user).name
 
   const logoutUser = () => {
     logout()
@@ -42,7 +44,7 @@ const Header = () => {
             <FaUser />
           </Link>
           <UserContent>
-            <p>Olá Alean</p>
+            <p>Olá, {userName}</p>
             <Link onClick={logoutUser}>Sair</Link>
           </UserContent>
         </CartContent>
