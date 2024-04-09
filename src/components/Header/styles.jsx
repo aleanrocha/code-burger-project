@@ -25,11 +25,28 @@ export const Link = styled(NavLink)`
   font-weight: 700;
   color: #555;
   cursor: pointer;
+  position: relative;
 
   &.active {
     color: #9758a6;
     font-weight: 900;
   }
+
+  ${(props) =>
+    props.$isCartData &&
+    `
+    &::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    top: -10;
+    right: -10p;
+    background-color: red;
+  }
+
+  `}
 `
 
 export const CartContent = styled.div`

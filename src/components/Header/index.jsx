@@ -2,6 +2,7 @@ import { FaUser } from 'react-icons/fa'
 import { FiShoppingCart } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 
+import useCart from '../../hooks/useCart'
 import useUser from '../../hooks/useUser'
 import {
   HeaderContainer,
@@ -14,7 +15,9 @@ import {
 
 const Header = () => {
   const { logout } = useUser()
+  const { cartData } = useCart()
   const navigate = useNavigate()
+
   const user = localStorage.getItem('clientData')
   const userName = JSON.parse(user).name
 
@@ -36,7 +39,7 @@ const Header = () => {
           <Link to={'/produtos'}>Produtos</Link>
         </NavBar>
         <CartContent>
-          <Link to={'/carrinho'}>
+          <Link to={'/carrinho'} $isCartData={cartData.length > 0}>
             <FiShoppingCart />
           </Link>
           <span></span>
