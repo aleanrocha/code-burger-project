@@ -65,7 +65,11 @@ const CategoryCarousel = () => {
           <swiper-slide key={category.id}>
             <SlideContent>
               <Image src={category.url} alt="comida deliciosa" />
-              <Button text={category.name} />
+              <Button
+                to={'/produtos'}
+                state={category.id}
+                text={category.name}
+              />
             </SlideContent>
           </swiper-slide>
         ))}

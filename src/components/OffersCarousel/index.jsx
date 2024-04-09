@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { register } from 'swiper/element/bundle'
 
+import useCart from '../../hooks/useCart'
 import api from '../../services/api'
 import formatCurrency from '../../utils/formatCurrency'
 import Button from '../Button'
@@ -19,6 +21,8 @@ const OffersCarousel = () => {
   const [offers, setOffers] = useState([])
   const [slidePerView, setSlidePerView] = useState()
   const swiperRef = useRef(null)
+  const { putCartData } = useCart()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const loadOffers = async () => {
@@ -80,7 +84,13 @@ const OffersCarousel = () => {
               <Image src={offer.url} alt="comida deliciosa" />
               <Title>{offer.name}</Title>
               <Text>{offer.formatedPrice}</Text>
-              <Button text={'Peça agora'} />
+              <Button
+                text={'Peça agora'}
+                click={() => {
+                  putCartData(offer)
+                  navigate('/carrinho')
+                }}
+              />
             </SlideContent>
           </swiper-slide>
         ))}

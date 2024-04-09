@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 import banner from '../../assets/banner-burger-products.svg'
 import CardProduct from '../../components/CardProduct'
@@ -12,11 +13,18 @@ import {
   ProductContainer
 } from './styles'
 
-const Home = () => {
+const Products = () => {
+  const { state } = useLocation()
+  let categoryId = 0
+
+  if (state) {
+    categoryId = state
+  }
+
   const [categories, setCategories] = useState([])
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(categoryId)
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -73,4 +81,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Products
