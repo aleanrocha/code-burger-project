@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 
+import Admin from '../containers/Admin'
 import Cart from '../containers/Cart'
 import Home from '../containers/Home'
 import Layout from '../containers/Layout'
@@ -33,6 +34,14 @@ const Router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Cart />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: '/ad-painel',
+        element: (
+          <ProtectedRoute>
+            <Admin />
           </ProtectedRoute>
         )
       }

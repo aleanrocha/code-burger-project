@@ -1,14 +1,17 @@
 import { Outlet } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 
 const Layout = () => {
+  const { pathname } = useLocation()
+
   return (
     <>
-      <Header />
+      {pathname !== '/ad-painel' && <Header />}
       {<Outlet />}
-      <Footer />
+      {pathname !== '/ad-painel' && <Footer />}
     </>
   )
 }

@@ -31,6 +31,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
   const { putUserData } = useUser()
   const [isUser, setIsUser] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
   const togglePasswordVisibility = () => setShowPassword(!showPassword)
 
   const schema = yup.object().shape({
@@ -63,6 +64,7 @@ const Login = () => {
         },
         { validateStatus: () => true }
       )
+      setIsAdmin(clientData.admin)
       setLoading(false)
       clientData.error ? null : putUserData(clientData)
       if (status === 201 || status === 200) {
@@ -82,7 +84,7 @@ const Login = () => {
 
   return (
     <MainContainer>
-      {isUser && <Navigate to={'/'} replace={true} />}
+      {isUser && <Navigate to={isAdmin ? '/ad-painel' : '/'} replace={true} />}
       <ContainerWrapper>
         <LoginImage />
         <ContainerItens>
