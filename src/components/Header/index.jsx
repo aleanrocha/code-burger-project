@@ -19,7 +19,7 @@ const Header = () => {
   const navigate = useNavigate()
 
   const user = localStorage.getItem('clientData')
-  const userName = JSON.parse(user).name
+  const userName = user && JSON.parse(user).name
 
   const logoutUser = () => {
     logout()
