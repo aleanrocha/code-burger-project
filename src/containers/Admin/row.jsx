@@ -12,10 +12,26 @@ import Typography from '@mui/material/Typography'
 import PropTypes from 'prop-types'
 import { useState, Fragment } from 'react'
 
-import { ProductImage } from './styles'
+import api from '../../services/api'
+import options from './select-options'
+import { ProductImage, SelectStyle } from './styles'
 
 const Row = ({ row }) => {
   const [open, setOpen] = useState(false)
+  const [status, setStatus] = useState(row.status)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const setNewStatus = async (id, status) => {
+    try {
+      setIsLoading(true)
+      return await api.put(`/orders/${id}`, { status })
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsLoading(false)
+      setStatus(status)
+    }
+  }
 
   return (
     <Fragment>
@@ -34,8 +50,17 @@ const Row = ({ row }) => {
         </TableCell>
         <TableCell>{row.name}</TableCell>
         <TableCell>{row.date}</TableCell>
-        <TableCell>{row.status}</TableCell>
-        <TableCell></TableCell>
+        <TableCell>
+          <SelectStyle
+            options={options}
+            menuPortalTarget={document.body}
+            placeholder="Status"
+            defaultValue={options.find((opt) => opt.value === row.status)}
+            onChange={(opt) => setNewStatus(row.orderId, opt.value)}
+            isDisabled={status === 'Entregue'}
+            isLoading={isLoading}
+          />
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>

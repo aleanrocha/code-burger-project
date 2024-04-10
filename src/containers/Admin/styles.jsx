@@ -1,3 +1,4 @@
+import Select from 'react-select'
 import styled from 'styled-components'
 
 export const AdminContainer = styled.section`
@@ -13,4 +14,8 @@ export const ProductImage = styled.img`
   width: 100%;
   max-width: 120px;
   border-radius: 0.5rem;
+`
+
+export const SelectStyle = styled(Select)`
+  width: 200px;
 `
