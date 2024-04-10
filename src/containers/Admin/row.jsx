@@ -12,6 +12,8 @@ import Typography from '@mui/material/Typography'
 import PropTypes from 'prop-types'
 import { useState, Fragment } from 'react'
 
+import { ProductImage } from './styles'
+
 const Row = ({ row }) => {
   const [open, setOpen] = useState(false)
 
@@ -60,7 +62,10 @@ const Row = ({ row }) => {
                       <TableCell>{productRow.quantity}</TableCell>
                       <TableCell>{productRow.category}</TableCell>
                       <TableCell>
-                        <img src={productRow.url} alt="imagem do produto" />
+                        <ProductImage
+                          src={productRow.url}
+                          alt="imagem do produto"
+                        />
                       </TableCell>
                     </TableRow>
                   ))}

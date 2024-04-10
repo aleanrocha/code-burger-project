@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow'
 import { useState, useEffect } from 'react'
 
 import api from '../../services/api'
+import formatDate from '../../utils/formatDate'
 import Orders from './Orders'
 import Row from './row'
 import { AdminContainer } from './styles'
@@ -30,7 +31,7 @@ const Admin = () => {
     return {
       name: order.user.name,
       orderId: order._id,
-      date: order.createdAt,
+      date: formatDate(order.createdAt),
       status: order.status,
       products: order.products
     }
@@ -57,7 +58,7 @@ const Admin = () => {
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <Row key={row.id} row={row} />
+              <Row key={row.orderId} row={row} />
             ))}
           </TableBody>
         </Table>
