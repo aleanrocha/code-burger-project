@@ -12,7 +12,7 @@ import formatDate from '../../utils/formatDate'
 import Orders from './Orders'
 import Row from './row'
 import options from './select-options'
-import { AdminContainer, Menu, LinkMenu } from './styles'
+import { AdminContainer, Menu, LinkMenu, EmptyTableInfo } from './styles'
 
 const Admin = () => {
   const [orders, setOrders] = useState([])
@@ -85,29 +85,33 @@ const Admin = () => {
             </LinkMenu>
           ))}
       </Menu>
-      <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
-          <TableHead>
-            <TableRow>
-              <TableCell />
-              <TableCell>Pedido</TableCell>
-              <TableCell>Cliente</TableCell>
-              <TableCell>Data do pedido</TableCell>
-              <TableCell>Status</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <Row
-                key={row.orderId}
-                row={row}
-                orders={orders}
-                setOrders={setOrders}
-              />
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      {filteredOrders && filteredOrders.length > 0 ? (
+        <TableContainer component={Paper}>
+          <Table aria-label="collapsible table">
+            <TableHead>
+              <TableRow>
+                <TableCell />
+                <TableCell>Pedido</TableCell>
+                <TableCell>Cliente</TableCell>
+                <TableCell>Data do pedido</TableCell>
+                <TableCell>Status</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <Row
+                  key={row.orderId}
+                  row={row}
+                  orders={orders}
+                  setOrders={setOrders}
+                />
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      ) : (
+        <EmptyTableInfo>Ops, Nada por aqui!</EmptyTableInfo>
+      )}
     </AdminContainer>
   )
 }

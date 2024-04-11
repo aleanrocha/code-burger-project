@@ -37,3 +37,10 @@ export const LinkMenu = styled.a`
   padding-bottom: 0.3rem;
   cursor: pointer;
 `
+
+export const EmptyTableInfo = styled.p`
+  background-color: #fff;
+  padding: 2.5rem 1rem;
+  text-align: center;
+  font-weight: 700;
+`
