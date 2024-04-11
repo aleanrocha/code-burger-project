@@ -19,3 +19,21 @@ export const ProductImage = styled.img`
 export const SelectStyle = styled(Select)`
   width: 200px;
 `
+
+export const Menu = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1.5rem 1rem;
+`
+
+export const LinkMenu = styled.a`
+  text-decoration: none;
+  color: #323d5d;
+  font-size: 1rem;
+  font-weight: ${(props) => (props.$isActiveStatus ? '700' : '400')};
+  border-bottom: ${(props) =>
+    props.$isActiveStatus ? '3px solid  #323d5d' : 'none'};
+  padding-bottom: 0.3rem;
+  cursor: pointer;
+`

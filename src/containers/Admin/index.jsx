@@ -11,18 +11,22 @@ import api from '../../services/api'
 import formatDate from '../../utils/formatDate'
 import Orders from './Orders'
 import Row from './row'
-import { AdminContainer } from './styles'
+import options from './select-options'
+import { AdminContainer, Menu, LinkMenu } from './styles'
 
 const Admin = () => {
   const [orders, setOrders] = useState([])
   const [rows, setRows] = useState([])
-  console.log(orders)
-  console.log(rows)
+  const [filteredOrders, setFilteredOrders] = useState([])
+  const [activeStatus, setActiveStatus] = useState(0)
+
+  const filterStatus = [{ id: 0, label: 'Todos', value: 'Todos' }, ...options]
 
   useEffect(() => {
     const loadOrders = async () => {
       const { data } = await api.get('/orders')
       setOrders(data)
+      setFilteredOrders(data)
     }
     loadOrders()
   }, [])
@@ -38,13 +42,35 @@ const Admin = () => {
   }
 
   useEffect(() => {
-    const newRows = orders.map((order) => createData(order))
+    const newRows = filteredOrders.map((order) => createData(order))
     setRows(newRows)
-  }, [orders])
+  }, [filteredOrders])
+
+  const handleStatus = (status) => {
+    if (status.id === 0) {
+      setFilteredOrders(orders)
+    } else {
+      const newOrders = orders.filter((order) => order.status === status.value)
+      setFilteredOrders(newOrders)
+    }
+    setActiveStatus(status.id)
+  }
 
   return (
     <AdminContainer>
       <Orders />
+      <Menu>
+        {filterStatus &&
+          filterStatus.map((status) => (
+            <LinkMenu
+              key={status.id}
+              onClick={() => handleStatus(status)}
+              $isActiveStatus={activeStatus === status.id}
+            >
+              {status.value}
+            </LinkMenu>
+          ))}
+      </Menu>
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <TableHead>
