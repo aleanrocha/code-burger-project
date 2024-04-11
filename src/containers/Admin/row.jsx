@@ -16,7 +16,7 @@ import api from '../../services/api'
 import options from './select-options'
 import { ProductImage, SelectStyle } from './styles'
 
-const Row = ({ row }) => {
+const Row = ({ row, orders, setOrders }) => {
   const [open, setOpen] = useState(false)
   const [status, setStatus] = useState(row.status)
   const [isLoading, setIsLoading] = useState(false)
@@ -24,7 +24,11 @@ const Row = ({ row }) => {
   const setNewStatus = async (id, status) => {
     try {
       setIsLoading(true)
-      return await api.put(`/orders/${id}`, { status })
+      await api.put(`/orders/${id}`, { status })
+      const newOrders = orders.map((order) => {
+        return order._id === id ? { ...order, status } : order
+      })
+      setOrders(newOrders)
     } catch (error) {
       console.error(error)
     } finally {
@@ -107,6 +111,8 @@ const Row = ({ row }) => {
 export default Row
 
 Row.propTypes = {
+  orders: PropTypes.array.isRequired,
+  setOrders: PropTypes.func.isRequired,
   row: PropTypes.shape({
     orderId: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
