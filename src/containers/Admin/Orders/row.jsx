@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography'
 import PropTypes from 'prop-types'
 import { useState, Fragment } from 'react'
 
-import api from '../../services/api'
+import api from '../../../services/api'
 import options from './select-options'
 import { ProductImage, SelectStyle } from './styles'
 
