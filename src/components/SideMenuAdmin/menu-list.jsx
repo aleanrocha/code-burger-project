@@ -5,13 +5,13 @@ const menuList = [
   {
     id: 1,
     label: 'Pedidos',
-    link: '/pedidos',
+    link: '/ad-painel',
     icon: <TbPaperBag />
   },
   {
     id: 2,
     label: 'Produtos',
-    link: '/produtos',
+    link: '/ad-painel/listar-produtos',
     icon: <TbBurger />
   },
   {

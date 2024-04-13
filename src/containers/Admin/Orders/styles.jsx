@@ -7,8 +7,6 @@ export const OrdersContainer = styled.section`
   margin: 0 auto;
 `
 
-export const RowContainer = styled.div``
-
 export const ProductImage = styled.img`
   width: 100%;
   max-width: 120px;

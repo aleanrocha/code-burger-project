@@ -44,6 +44,14 @@ const Router = createBrowserRouter([
             <Admin />
           </ProtectedRoute>
         )
+      },
+      {
+        path: '/ad-painel/listar-produtos',
+        element: (
+          <ProtectedRoute>
+            <Admin />
+          </ProtectedRoute>
+        )
       }
     ]
   },

@@ -6,12 +6,16 @@ import Header from '../../components/Header'
 
 const Layout = () => {
   const { pathname } = useLocation()
+  const isAdminPanelRoute = [
+    '/ad-painel',
+    '/ad-painel/listar-produtos'
+  ].includes(pathname)
 
   return (
     <>
-      {pathname !== '/ad-painel' && <Header />}
+      {!isAdminPanelRoute && <Header />}
       {<Outlet />}
-      {pathname !== '/ad-painel' && <Footer />}
+      {!isAdminPanelRoute && <Footer />}
     </>
   )
 }
