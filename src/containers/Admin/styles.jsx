@@ -4,5 +4,7 @@ export const AdminContainer = styled.section`
   background-color: #e5e5e5;
   width: 100%;
   min-height: 100vh;
-  padding: 1rem;
+
+  display: flex;
+  gap: 1rem;
 `

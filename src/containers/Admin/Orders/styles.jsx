@@ -4,6 +4,7 @@ import styled from 'styled-components'
 export const OrdersContainer = styled.section`
   background-color: #e5e5e5;
   padding: 1rem 1rem 3rem;
+  margin: 0 auto;
 `
 
 export const RowContainer = styled.div``
