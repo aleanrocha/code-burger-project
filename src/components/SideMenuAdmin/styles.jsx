@@ -8,8 +8,9 @@ export const SideMenuContainer = styled.aside`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.2rem;
   padding: 4rem 1rem 1rem;
+  position: relative;
 
   > hr {
     width: 100%;
@@ -19,18 +20,15 @@ export const SideMenuContainer = styled.aside`
 `
 
 export const ItemContainer = styled.div`
+  background-color: ${(props) => (props.$isActive ? '#565656' : 'none')};
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   padding: 1rem 0.5rem;
 
   > svg {
     font-size: 1.3rem;
-  }
-
-  &:hover {
-    background-color: #565656;
   }
 `
 
@@ -38,5 +36,4 @@ export const ListLink = styled(Link)`
   text-decoration: none;
   color: #fff;
   width: 100%;
-  height: 100%;
 `
