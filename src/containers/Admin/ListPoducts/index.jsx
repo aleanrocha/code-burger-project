@@ -8,7 +8,14 @@ import TableRow from '@mui/material/TableRow'
 import { useEffect, useState } from 'react'
 
 import api from '../../../services/api'
-import { ListProductsContainer } from './styles'
+import fromatCurrency from '../../../utils/formatCurrency'
+import {
+  ListProductsContainer,
+  Image,
+  Button,
+  CheckIcon,
+  Xicon
+} from './styles'
 
 export const ListProducts = () => {
   const [products, setProducts] = useState([])
@@ -29,7 +36,7 @@ export const ListProducts = () => {
             <TableRow>
               <TableCell>Nome</TableCell>
               <TableCell>Preço</TableCell>
-              <TableCell>Em Oferta</TableCell>
+              <TableCell align="center">Em Oferta</TableCell>
               <TableCell>Imagem</TableCell>
               <TableCell>Editar</TableCell>
             </TableRow>
@@ -44,13 +51,15 @@ export const ListProducts = () => {
                   <TableCell component="th" scope="row">
                     {product.name}
                   </TableCell>
-                  <TableCell>{product.price}</TableCell>
-                  <TableCell>{product.offer}</TableCell>
-                  <TableCell>
-                    <img src={product.url} alt="Imagem do produto" />
+                  <TableCell>{fromatCurrency(product.price)}</TableCell>
+                  <TableCell align="center">
+                    {product.offer ? <CheckIcon /> : <Xicon />}
                   </TableCell>
                   <TableCell>
-                    <button>Editar</button>
+                    <Image src={product.url} alt="Imagem do produto" />
+                  </TableCell>
+                  <TableCell>
+                    <Button>Editar</Button>
                   </TableCell>
                 </TableRow>
               ))}
