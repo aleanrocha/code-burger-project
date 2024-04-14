@@ -25,7 +25,7 @@ export const ItemContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 1rem 0.5rem;
+  padding: 0rem 0.5rem;
 
   > svg {
     font-size: 1.3rem;
@@ -36,4 +36,5 @@ export const ListLink = styled(Link)`
   text-decoration: none;
   color: #fff;
   width: 100%;
+  padding: 1rem 0;
 `
