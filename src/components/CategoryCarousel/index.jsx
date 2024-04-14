@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { register } from 'swiper/element/bundle'
 
+import paths from '../../constants/paths'
 import api from '../../services/api'
 import Button from '../Button'
 import { CategoryContainer, CategoryTitle, SlideContent, Image } from './styles'
@@ -66,7 +67,7 @@ const CategoryCarousel = () => {
             <SlideContent>
               <Image src={category.url} alt="comida deliciosa" />
               <Button
-                to={'/produtos'}
+                to={paths.Products}
                 state={category.id}
                 text={category.name}
               />

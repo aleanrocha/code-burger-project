@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { TbLogout } from 'react-icons/tb'
 
+import paths from '../../constants/paths'
 import useUser from '../../hooks/useUser'
 import menuList from './menu-list'
 import { SideMenuContainer, ItemContainer, ListLink } from './styles'
@@ -27,7 +28,7 @@ const SideMenuAdmin = () => {
         style={{ position: 'absolute', bottom: '45px', left: '20px' }}
       >
         <TbLogout />
-        <ListLink to={'/Entrar'} onClick={logout}>
+        <ListLink to={paths.Login} onClick={logout}>
           Sair
         </ListLink>
       </ItemContainer>

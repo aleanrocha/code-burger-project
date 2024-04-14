@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 
+import paths from '../constants/paths'
+
 const Protected = ({ children }) => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
@@ -11,9 +13,9 @@ const Protected = ({ children }) => {
 
   useEffect(() => {
     if (!user) {
-      navigate('/entrar', { replace: true })
-    } else if (pathname === '/ad-painel' && !JSON.parse(user).admin) {
-      navigate('/', { replace: true })
+      navigate(paths.Login, { replace: true })
+    } else if (pathname === paths.AdPanel && !JSON.parse(user).admin) {
+      navigate(paths.Home, { replace: true })
     } else {
       setRedirecting(false)
     }

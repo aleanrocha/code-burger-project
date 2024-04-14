@@ -3,12 +3,15 @@ import { useLocation } from 'react-router-dom'
 
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
+import paths from '../../constants/paths'
 
 const Layout = () => {
   const { pathname } = useLocation()
   const isAdminPanelRoute = [
-    '/ad-painel',
-    '/ad-painel/listar-produtos'
+    paths.AdPanel,
+    paths.ListProducts,
+    paths.EditProduct,
+    paths.NewProduct
   ].includes(pathname)
 
   return (

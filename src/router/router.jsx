@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 
+import paths from '../constants/paths'
 import Admin from '../containers/Admin'
 import Cart from '../containers/Cart'
 import Home from '../containers/Home'
@@ -14,7 +15,7 @@ const Router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: '/',
+        path: paths.Home,
         element: (
           <ProtectedRoute>
             <Home />
@@ -22,7 +23,7 @@ const Router = createBrowserRouter([
         )
       },
       {
-        path: '/produtos',
+        path: paths.Products,
         element: (
           <ProtectedRoute>
             <Products />
@@ -30,7 +31,7 @@ const Router = createBrowserRouter([
         )
       },
       {
-        path: '/carrinho',
+        path: paths.Cart,
         element: (
           <ProtectedRoute>
             <Cart />
@@ -38,7 +39,7 @@ const Router = createBrowserRouter([
         )
       },
       {
-        path: '/ad-painel',
+        path: paths.AdPanel,
         element: (
           <ProtectedRoute>
             <Admin />
@@ -46,7 +47,23 @@ const Router = createBrowserRouter([
         )
       },
       {
-        path: '/ad-painel/listar-produtos',
+        path: paths.ListProducts,
+        element: (
+          <ProtectedRoute>
+            <Admin />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: paths.EditProduct,
+        element: (
+          <ProtectedRoute>
+            <Admin />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: paths.NewProduct,
         element: (
           <ProtectedRoute>
             <Admin />
@@ -55,8 +72,8 @@ const Router = createBrowserRouter([
       }
     ]
   },
-  { path: '/entrar', element: <Login /> },
-  { path: '/cadastrar', element: <Register /> }
+  { path: paths.Login, element: <Login /> },
+  { path: paths.Register, element: <Register /> }
 ])
 
 export default Router

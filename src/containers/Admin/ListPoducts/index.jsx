@@ -7,6 +7,8 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import { useEffect, useState } from 'react'
 
+import paths from '../../../constants/paths'
+
 import api from '../../../services/api'
 import fromatCurrency from '../../../utils/formatCurrency'
 import {
@@ -59,7 +61,7 @@ export const ListProducts = () => {
                     <Image src={product.url} alt="Imagem do produto" />
                   </TableCell>
                   <TableCell>
-                    <Button>Editar</Button>
+                    <Button to={paths.EditProduct}>Editar</Button>
                   </TableCell>
                 </TableRow>
               ))}

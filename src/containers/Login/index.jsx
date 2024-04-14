@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import * as yup from 'yup'
 
 import burgerLogoLogin from '../../assets/burger-logo-login.svg'
+import paths from '../../constants/paths'
 import useUser from '../../hooks/useUser'
 import api from '../../services/api'
 import {
@@ -84,7 +85,9 @@ const Login = () => {
 
   return (
     <MainContainer>
-      {isUser && <Navigate to={isAdmin ? '/ad-painel' : '/'} replace={true} />}
+      {isUser && (
+        <Navigate to={isAdmin ? paths.AdPanel : paths.Home} replace={true} />
+      )}
       <ContainerWrapper>
         <LoginImage />
         <ContainerItens>
@@ -127,7 +130,7 @@ const Login = () => {
             <ToastContainer autoClose={2000} />
           </LoginContainer>
           <Register>
-            Não possui conta? <Link to={'/cadastrar'}>Cadastre-se</Link>
+            Não possui conta? <Link to={paths.Register}>Cadastre-se</Link>
           </Register>
         </ContainerItens>
       </ContainerWrapper>

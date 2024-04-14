@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import * as yup from 'yup'
 
 import burgerLogoLogin from '../../assets/burger-logo-login.svg'
+import paths from '../../constants/paths'
 import api from '../../services/api'
 import {
   MainContainer,
@@ -85,7 +86,7 @@ const Register = () => {
 
   return (
     <MainContainer>
-      {isUser && <Navigate to={'/entrar'} replace={true} />}
+      {isUser && <Navigate to={paths.Login} replace={true} />}
       <ContainerWrapper>
         <RegisterImage />
         <ContainerItens>
@@ -158,7 +159,7 @@ const Register = () => {
             <ToastContainer autoClose={2000} />
           </RegisterContainer>
           <LoginLink>
-            Já possui conta?<Link to={'/entrar'}> Entrar</Link>
+            Já possui conta?<Link to={paths.Login}> Entrar</Link>
           </LoginLink>
         </ContainerItens>
       </ContainerWrapper>

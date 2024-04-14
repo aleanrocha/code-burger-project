@@ -1,4 +1,5 @@
 import { TbChecks, TbCircleXFilled } from 'react-icons/tb'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const ListProductsContainer = styled.div`
@@ -12,9 +13,10 @@ export const Image = styled.img`
   border-radius: 0.5rem;
 `
 
-export const Button = styled.button`
+export const Button = styled(Link)`
   background-color: #9758a6;
   color: #fff;
+  text-decoration: none;
   padding: 0.6rem 1.5rem;
   border: none;
   border-radius: 5rem;

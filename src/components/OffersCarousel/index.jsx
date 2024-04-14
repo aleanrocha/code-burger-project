@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { register } from 'swiper/element/bundle'
 
+import paths from '../../constants/paths'
 import useCart from '../../hooks/useCart'
 import api from '../../services/api'
 import formatCurrency from '../../utils/formatCurrency'
@@ -88,7 +89,7 @@ const OffersCarousel = () => {
                 text={'Peça agora'}
                 click={() => {
                   putCartData(offer)
-                  navigate('/carrinho')
+                  navigate(paths.Cart)
                 }}
               />
             </SlideContent>
