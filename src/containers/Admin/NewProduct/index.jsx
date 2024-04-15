@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Select from 'react-select'
 
@@ -8,6 +8,7 @@ import { NewProductContainer, Form, Label, Input } from './styles'
 
 const NewProduct = () => {
   const { register, handleSubmit } = useForm()
+  const [fileName, setFileName] = useState(null)
 
   useEffect(() => {
     const createProduct = async () => {
@@ -35,8 +36,15 @@ const NewProduct = () => {
           {...register('price')}
         />
 
-        <Label htmlFor="image">Upload da imagem</Label>
-        <Input id="image" type="file" accept="image/png, image/jpeg" />
+        <Label htmlFor="image" className="file">
+          {fileName ? `${fileName}` : 'Carregar imagem do produto'}
+          <Input
+            id="image"
+            type="file"
+            accept="image/png, image/jpeg"
+            onChange={(e) => setFileName(e.target.files[0]?.name)}
+          />
+        </Label>
 
         <Select />
 

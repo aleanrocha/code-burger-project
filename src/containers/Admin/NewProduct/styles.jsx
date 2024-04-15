@@ -26,6 +26,17 @@ export const Form = styled.form`
 `
 export const Label = styled.label`
   font-weight: 700;
+
+  &.file {
+    border: 1px dashed #fff;
+    text-align: center;
+    padding: 1rem;
+    margin: 0.5rem 0rem 1rem;
+    cursor: pointer;
+    > input {
+      display: none;
+    }
+  }
 `
 
 export const Input = styled.input`
