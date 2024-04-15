@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { TbLogout } from 'react-icons/tb'
+import { useLocation } from 'react-router-dom'
 
 import paths from '../../constants/paths'
 import useUser from '../../hooks/useUser'
@@ -7,8 +8,9 @@ import menuList from './menu-list'
 import { SideMenuContainer, ItemContainer, ListLink } from './styles'
 
 const SideMenuAdmin = () => {
+  const { pathname } = useLocation()
   const { logout } = useUser()
-  const [active, setActive] = useState(1)
+  const [active, setActive] = useState(pathname)
 
   return (
     <SideMenuContainer>
@@ -16,8 +18,8 @@ const SideMenuAdmin = () => {
       {menuList.map((item) => (
         <ItemContainer
           key={item.id}
-          $isActive={active === item.id}
-          onClick={() => setActive(item.id)}
+          $isActive={active === item.link}
+          onClick={() => setActive(item.link)}
         >
           {item.icon}
           <ListLink to={item.link}>{item.label}</ListLink>
