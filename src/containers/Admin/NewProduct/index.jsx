@@ -1,18 +1,20 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import Select from 'react-select'
+import { ToastContainer, toast } from 'react-toastify'
 import * as Yup from 'yup'
 
 import ErrorMessage from '../../../components/ErrorMessage'
+import paths from '../../../constants/paths'
 import api from '../../../services/api'
 import { NewProductContainer, Form, Label, Input, Submit } from './styles'
 
 const NewProduct = () => {
   const [fileName, setFileName] = useState(null)
   const [categories, setCategories] = useState([])
-
-  const onSubmit = (data) => console.log(data)
+  const navigate = useNavigate()
 
   const schema = Yup.object().shape({
     name: Yup.string().required('Nome obrigatório'),
@@ -36,6 +38,24 @@ const NewProduct = () => {
     control,
     formState: { errors }
   } = useForm({ resolver: yupResolver(schema) })
+
+  const onSubmit = async (data) => {
+    const newProductFormData = new FormData()
+    newProductFormData.append('name', data.name)
+    newProductFormData.append('price', data.price)
+    newProductFormData.append('file', data.file[0])
+    newProductFormData.append('category_id', data.category.id)
+
+    await toast.promise(api.post('/products', newProductFormData), {
+      pending: 'Asicionando produto...',
+      success: 'Produto adicionado!',
+      error: 'Erro ao adicionar produto, tente novamente!'
+    })
+
+    setTimeout(() => {
+      navigate(paths.ListProducts)
+    }, 2000)
+  }
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -96,6 +116,7 @@ const NewProduct = () => {
 
         <Submit type="submit">Adicionar</Submit>
       </Form>
+      <ToastContainer autoClose={2000} />
     </NewProductContainer>
   )
 }
