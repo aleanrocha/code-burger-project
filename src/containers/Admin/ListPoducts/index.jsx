@@ -8,7 +8,6 @@ import TableRow from '@mui/material/TableRow'
 import { useEffect, useState } from 'react'
 
 import paths from '../../../constants/paths'
-
 import api from '../../../services/api'
 import fromatCurrency from '../../../utils/formatCurrency'
 import {
@@ -61,7 +60,9 @@ export const ListProducts = () => {
                     <Image src={product.url} alt="Imagem do produto" />
                   </TableCell>
                   <TableCell>
-                    <Button to={paths.EditProduct}>Editar</Button>
+                    <Button to={paths.EditProduct} state={product}>
+                      Editar
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
