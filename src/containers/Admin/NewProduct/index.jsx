@@ -23,7 +23,7 @@ const NewProduct = () => {
         return value?.length > 0
       })
       .test('fileSize', 'Carregue imagens de até 2 MB', (value) => {
-        return value[0]?.size > 200480
+        return value[0]?.size < 200480
       })
       .test('fileType', 'Carregue apenas imagens jpg/png', (value) => {
         return value[0]?.type === 'image/png' || value[0]?.type === 'image/jpeg'
@@ -47,6 +47,7 @@ const NewProduct = () => {
 
   return (
     <NewProductContainer>
+      <h2>Adicionar Produto</h2>
       <Form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Label htmlFor="name">Nome</Label>
         <Input

@@ -3,14 +3,22 @@ import styled from 'styled-components'
 export const NewProductContainer = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1.5rem;
+
+  > h2 {
+    color: #9758a4;
+    text-transform: uppercase;
+    font-weight: 900;
+  }
 `
 
 export const Form = styled.form`
   width: 100%;
   max-width: 380px;
-  background-color: #565656;
+  background-color: #222121;
   font-size: 1rem;
   padding: 2rem;
   border-radius: 0.5rem;
@@ -27,7 +35,7 @@ export const Label = styled.label`
     border: 1px dashed #fff;
     text-align: center;
     padding: 1rem;
-    margin: 0.5rem 0rem 1rem;
+    margin: 0.5rem 0rem 0rem;
     cursor: pointer;
     position: relative;
     > input {
@@ -43,7 +51,6 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   padding: 0.6rem;
-  margin-bottom: 0.5rem;
 `
 
 export const Submit = styled.button`
