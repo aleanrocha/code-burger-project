@@ -19,22 +19,24 @@ const NewProduct = () => {
   return (
     <NewProductContainer>
       <Form onSubmit={(onSubmit) => handleSubmit(onSubmit)}>
-        <Label>Nome</Label>
+        <Label htmlFor="name">Nome</Label>
         <Input
+          id="name"
           type="text"
           placeholder="Nome do produto"
           {...register('name')}
         />
 
-        <Label>Preço</Label>
+        <Label htmlFor="price">Preço</Label>
         <Input
+          id="price"
           type="number"
           placeholder="Preço do produto"
           {...register('price')}
         />
 
-        <Label>Upload da imagem</Label>
-        <Input type="file" accept="image/png, image/jpeg" />
+        <Label htmlFor="image">Upload da imagem</Label>
+        <Input id="image" type="file" accept="image/png, image/jpeg" />
 
         <Select />
 
