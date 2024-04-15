@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import * as yup from 'yup'
 
 import burgerLogoLogin from '../../assets/burger-logo-login.svg'
+import ErrorMessage from '../../components/ErrorMessage'
 import paths from '../../constants/paths'
 import api from '../../services/api'
 import {
@@ -22,8 +23,7 @@ import {
   Input,
   LoginLink,
   Wrapper,
-  InputWrapper,
-  TextError
+  InputWrapper
 } from './styles'
 
 const Register = () => {
@@ -104,7 +104,7 @@ const Register = () => {
                 })}
                 $error={errors.name?.message}
               />
-              <TextError>{errors.name?.message}</TextError>
+              <ErrorMessage>{errors.name?.message}</ErrorMessage>
             </Wrapper>
             <Wrapper>
               <Label htmlFor="email">E-mail:</Label>
@@ -117,7 +117,7 @@ const Register = () => {
                 })}
                 $error={errors.email?.message}
               />
-              <TextError>{errors.email?.message}</TextError>
+              <ErrorMessage>{errors.email?.message}</ErrorMessage>
             </Wrapper>
             <Wrapper>
               <Label htmlFor="pass">Senha:</Label>
@@ -132,7 +132,7 @@ const Register = () => {
                   {showPassword ? <FaUnlock /> : <FaLock />}
                 </div>
               </InputWrapper>
-              <TextError>{errors.password?.message}</TextError>
+              <ErrorMessage>{errors.password?.message}</ErrorMessage>
             </Wrapper>
             <Wrapper>
               <Label htmlFor="confirmPass">Confirmar senha:</Label>
@@ -149,7 +149,7 @@ const Register = () => {
                   {showConfirmPassword ? <FaUnlock /> : <FaLock />}
                 </div>
               </InputWrapper>
-              <TextError>{errors.confirmPass?.message}</TextError>
+              <ErrorMessage>{errors.confirmPass?.message}</ErrorMessage>
             </Wrapper>
             <Input
               type="submit"

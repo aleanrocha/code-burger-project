@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import * as yup from 'yup'
 
 import burgerLogoLogin from '../../assets/burger-logo-login.svg'
+import ErrorMessage from '../../components/ErrorMessage'
 import paths from '../../constants/paths'
 import useUser from '../../hooks/useUser'
 import api from '../../services/api'
@@ -23,8 +24,7 @@ import {
   Input,
   Register,
   Wrapper,
-  InputWrapper,
-  TextError
+  InputWrapper
 } from './styles'
 
 const Login = () => {
@@ -105,7 +105,7 @@ const Login = () => {
                 })}
                 $error={errors.email?.message}
               />
-              <TextError>{errors.email?.message}</TextError>
+              <ErrorMessage>{errors.email?.message}</ErrorMessage>
             </Wrapper>
             <Wrapper>
               <Label htmlFor="pass">Senha:</Label>
@@ -120,7 +120,7 @@ const Login = () => {
                   {showPassword ? <FaUnlock /> : <FaLock />}
                 </div>
               </InputWrapper>
-              <TextError>{errors.password?.message}</TextError>
+              <ErrorMessage>{errors.password?.message}</ErrorMessage>
             </Wrapper>
             <Input
               type="submit"

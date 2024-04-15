@@ -114,11 +114,6 @@ export const InputWrapper = styled.div`
     padding: 0 0.5rem;
   }
 `
-export const TextError = styled.p`
-  color: #f22;
-  margin-top: 0.3rem;
-  font-weight: 700;
-`
 export const LoginLink = styled.p`
   font-weight: 300;
   font-size: 0.9rem;

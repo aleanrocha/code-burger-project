@@ -29,8 +29,14 @@ export const Label = styled.label`
     padding: 1rem;
     margin: 0.5rem 0rem 1rem;
     cursor: pointer;
+    position: relative;
     > input {
-      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
     }
   }
 `
