@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const SideMenuContainer = styled.aside`
-  width: 400px;
+  width: 300px;
   background-color: #222121;
   color: #fff;
   display: flex;

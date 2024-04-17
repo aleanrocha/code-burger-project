@@ -27,7 +27,7 @@ const SideMenuAdmin = () => {
       ))}
       <hr />
       <ItemContainer
-        style={{ position: 'absolute', bottom: '45px', left: '20px' }}
+        style={{ position: 'fixed', bottom: '45px', left: '20px' }}
       >
         <TbLogout />
         <ListLink to={paths.Login} onClick={logout}>
