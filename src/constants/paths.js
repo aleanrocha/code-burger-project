@@ -1,6 +1,6 @@
 const paths = {
   Login: '/entrar',
-  Register: 'cadastrar',
+  Register: '/cadastrar',
   Home: '/',
   Products: '/produtos',
   Cart: '/carrinho',
