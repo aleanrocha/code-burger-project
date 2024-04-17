@@ -15,23 +15,13 @@ const EditProduct = () => {
   const [fileName, setFileName] = useState(null)
   const [categories, setCategories] = useState([])
   const navigate = useNavigate()
-  const location = useLocation()
-  console.log(location)
+  const { state: product } = useLocation()
 
   const schema = Yup.object().shape({
     name: Yup.string().required('Nome obrigatório'),
     price: Yup.string().required('Preço obrigatório'),
     category: Yup.object().required('Selecione uma Categoria'),
-    file: Yup.mixed()
-      .test('required', 'Carregue uma imagem', (value) => {
-        return value?.length > 0
-      })
-      .test('fileSize', 'Carregue imagens de até 2 MB', (value) => {
-        return value[0]?.size < 200480
-      })
-      .test('fileType', 'Carregue apenas imagens jpg/png', (value) => {
-        return value[0]?.type === 'image/png' || value[0]?.type === 'image/jpeg'
-      })
+    offer: Yup.bool()
   })
 
   const {
@@ -46,13 +36,17 @@ const EditProduct = () => {
     newProductFormData.append('name', data.name)
     newProductFormData.append('price', data.price)
     newProductFormData.append('file', data.file[0])
-    newProductFormData.append('category_id', data.category.id)
+    newProductFormData.append('category_id', data.category.id),
+      newProductFormData.append('offer', data.offer)
 
-    await toast.promise(api.post('/products', newProductFormData), {
-      pending: 'Asicionando produto...',
-      success: 'Produto adicionado!',
-      error: 'Erro ao adicionar produto, tente novamente!'
-    })
+    await toast.promise(
+      api.put(`/products/${product.id}`, newProductFormData),
+      {
+        pending: 'Editando produto...',
+        success: 'Produto editado!',
+        error: 'Erro ao editar produto, tente novamente!'
+      }
+    )
 
     setTimeout(() => {
       navigate(paths.ListProducts)
@@ -77,6 +71,7 @@ const EditProduct = () => {
           type="text"
           placeholder="Nome do produto"
           {...register('name')}
+          defaultValue={product.name}
         />
         <ErrorMessage>{errors.name?.message}</ErrorMessage>
 
@@ -86,6 +81,7 @@ const EditProduct = () => {
           type="number"
           placeholder="Preço do produto"
           {...register('price')}
+          defaultValue={product.price}
         />
         <ErrorMessage>{errors.price?.message}</ErrorMessage>
 
@@ -104,6 +100,7 @@ const EditProduct = () => {
         <Controller
           name="category"
           control={control}
+          defaultValue={product.category}
           render={({ field }) => (
             <Select
               {...field}
@@ -111,12 +108,23 @@ const EditProduct = () => {
               getOptionLabel={(cat) => cat.name}
               getOptionValue={(cat) => cat.id}
               placeholder="Categorias"
+              defaultValue={product.category}
             />
           )}
         ></Controller>
         <ErrorMessage>{errors.category?.message}</ErrorMessage>
 
-        <Submit type="submit">Adicionar</Submit>
+        <Label htmlFor="offer" style={{ display: 'flex', gap: '0.5rem' }}>
+          <input
+            type="checkbox"
+            id="offer"
+            {...register('offer')}
+            defaultChecked={product.offer}
+          />
+          Em oferta
+        </Label>
+
+        <Submit type="submit">Editar</Submit>
       </Form>
       <ToastContainer autoClose={2000} />
     </NewProductContainer>
