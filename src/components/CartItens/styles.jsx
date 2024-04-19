@@ -29,7 +29,7 @@ export const ParagraphWrapper = styled.p`
   font-weight: 700;
 
   &.emptyCart {
-    padding: 2rem 1rem;
+    padding: 4rem 1rem;
     text-align: center;
     color: black;
   }

@@ -19,6 +19,10 @@ const Btn = styled(Link)`
   &:hover {
     opacity: 1;
   }
+
+  @media screen and (max-width: 580px) {
+    font-size: 1rem;
+  }
 `
 
 export default Btn

@@ -16,6 +16,9 @@ export const MenuContainer = styled.section`
   flex-wrap: wrap;
   gap: 1.5rem;
   padding: 2rem 1rem;
+  @media screen and (max-width: 580px) {
+    gap: 1rem;
+  }
 `
 export const CategoryButton = styled.button`
   background: none;
@@ -44,6 +47,9 @@ export const CategoryButton = styled.button`
   &:hover::after {
     width: 100%;
   }
+  @media screen and (max-width: 580px) {
+    font-size: 1rem;
+  }
 `
 export const ProductContainer = styled.section`
   padding: 1.5rem 0;
@@ -57,5 +63,5 @@ export const ProductContainer = styled.section`
   width: 95%;
   max-width: 1280px;
   min-height: 70vh;
-  margin: 0 auto;
+  margin: 0 auto 3rem;
 `

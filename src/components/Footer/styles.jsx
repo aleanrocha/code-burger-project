@@ -11,4 +11,9 @@ export const FooterContainer = styled.footer`
     text-decoration: none;
     color: #9758a6;
   }
+
+  @media screen and (max-width: 580px) {
+    font-size: 0.8rem;
+    padding: 3rem 1rem;
+  }
 `

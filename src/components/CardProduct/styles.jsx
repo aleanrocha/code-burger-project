@@ -41,6 +41,13 @@ export const ProductInfo = styled.div`
     border-radius: 10rem;
     font-size: 1rem;
   }
+  @media screen and (max-width: 580px) {
+    font-size: 0.9rem;
+
+    > a {
+      font-size: 0.9rem;
+    }
+  }
 `
 
 export const ProductName = styled.h3`

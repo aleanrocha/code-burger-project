@@ -3,6 +3,9 @@ import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
   padding: 1rem;
+  @media screen and (max-width: 580px) {
+    font-size: 0.9rem;
+  }
 `
 
 export const ContainerItems = styled.section`
@@ -47,12 +50,23 @@ export const Link = styled(NavLink)`
   }
 
   `}
+
+  > svg {
+    @media screen and (max-width: 580px) {
+      font-size: 1.2rem;
+    }
+  }
 `
 
 export const CartContent = styled.div`
   display: flex;
   align-items: center;
   gap: 1.5rem;
+
+  @media screen and (max-width: 580px) {
+    gap: 1rem;
+    font-size: 1rem;
+  }
 
   > span {
     height: 20px;
@@ -70,5 +84,8 @@ export const UserContent = styled.div`
   > a {
     color: #9758a6;
     font-weight: 700;
+  }
+  @media screen and (max-width: 580px) {
+    font-size: 0.9rem;
   }
 `

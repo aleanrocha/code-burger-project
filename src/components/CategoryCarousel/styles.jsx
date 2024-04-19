@@ -25,6 +25,9 @@ export const CategoryTitle = styled.h2`
   text-align: center;
   font-size: 2rem;
   text-transform: uppercase;
+  @media screen and (max-width: 580px) {
+    font-size: 1.5rem;
+  }
 `
 
 export const SlideContent = styled.div`
@@ -35,6 +38,11 @@ export const SlideContent = styled.div`
   flex-direction: column;
   gap: 0.4rem;
   margin: 2rem 0 3rem;
+
+  @media screen and (max-width: 580px) {
+    width: 85%;
+    margin: 2rem auto 3rem;
+  }
 `
 
 export const Image = styled.img`

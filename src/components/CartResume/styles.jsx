@@ -15,7 +15,7 @@ export const CartResumeContainer = styled.div`
   @media screen and (max-width: 992px) {
     width: 95%;
     max-width: 800px;
-    margin: auto;
+    margin: 0 auto;
   }
 `
 
